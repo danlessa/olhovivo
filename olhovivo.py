@@ -8,6 +8,7 @@ import json;
 import struct;
 import math;
 import os;
+import glob;
 
 def verify(req):
     if(req.status_code==200):
@@ -198,33 +199,19 @@ def main():
     GTFS_FOLDER = "gtfs/";
     dic_bus = {};
 	
-	
-    with open("n.txt","r") as n_fid:
-        n_f=int(n_fid.read(1));
-    print(n_f);
-    
-    n=0;
     linhas=scriptCarregarCodigos(COD_LINHAS);
-    t1=0;
-    t2=0;
-    time_start=time.time()
 
-    while 1==1:	
-        n=n+1;
-        t1=time.time();
-        if(t1-time_start>(24*60*60)):
-            n_f+=1;
-            new_fn="posicoes-" + n_f + ".dat";
-            os.rename("posicoes.raps.dat", new_fn);
-            with open("n.txt","w") as n_fid:
-                n_fid.write(n_f);
-            time_start=time.time();			
-        else:
-            with open(POSICOES,"ab") as fil:
-                scriptDumpPos(fil, linhas, TOKEN, dic_bus);
-                t2=time.time();
-                delta=t2-t1;
-                if(delta<60*3):
-                    time.sleep(60*3-delta);
+    if(os.path.exists(POSICOES)):
+       c=len(glob.glob("*.dat"));
+       os.rename(POSICOES, "posicoes-"+str(c)+".dat");
+ 
+    while 1==1:	 
+        with open(POSICOES, "ab") as fil:
+            t1=time.time();
+            scriptDumpPos(fil, linhas, TOKEN, dic_bus);
+            t2=time.time();
+            delta=t2-t1;
+            if(delta<60*3):
+                time.sleep(60*3-delta);
     
 main();    
