@@ -2,11 +2,12 @@
 #dependências iniciais e constantes
 import numpy as np
 import matplotlib as plt
+import scipy.stats
 from main import *
 from func import *
 from graphics import *
 from helper import *
-path = "/home/danilo/olhovivo/dat/"
+path = "/home/danilo/olhovivo/data/"
 #carregamento dos dados
 data_mtr = load_dat(path, UTC)
 #declaracoes iniciais
@@ -14,15 +15,21 @@ t = data_mtr['t']
 d = t / (60 * 60 * 24) % 7
 cl = data_mtr['cl']
 h = (t % 24)
+
+print("1")
 #indices
 inds_all = (t == t)
+
+del t
+
 inds_util = ((d < 2) | (d > 4))
 inds_sab = ((d >= 2) & (d < 3))
 inds_fds = (d >= 2) & (d < 4)
 inds_dom = (d >= 3) & (d < 4)
+print("2")
 
+del d
 
-"""
 #Parte 1 - Distribuição de velocidades
 
 print("parte 1")
@@ -64,6 +71,44 @@ trip_analyze(trip_mtr, ind_sab, "Sábados")
 ind_dom = (dt >= 3) & (dt < 4)
 trip_analyze(trip_mtr, ind_dom, "Domingos")
 #end
+
+
+##parte 2.5 - analises
+
+s = ""
+s += "Quantidade de dados analisados:\t"
+s += str(len(data_mtr['t']))
+s += str("\nQuantidade de ônibus:\t")
+s += str(len(np.unique(data_mtr['co'])))
+s += str("\nQuantidade de linhas:\t")
+s += str(len(np.unique(data_mtr['cl'])))
+
+s += str("\nVelocidade mediana geral:\t")
+s += str(np.median(data_mtr['v']))
+s += str("\nVelocidade média geral:\t")
+s += str(np.mean(data_mtr['v']))
+s += str("\nDesvio padrão da velocidade:\t")
+s += str(np.std(data_mtr['v']))
+s += str("\nCurtose da velocidade:\t")
+s += str(scipy.stats.kurtosis(data_mtr['v']))
+s += str("\nSkewness da velocidade:\t")
+s += str(scipy.stats.skew(data_mtr['v']))
+
+s += str("\nTempo mediano de viagem:\t")
+s += str(np.median(trip_mtr['tmp']))
+s += str("\nTempo médio de viagem:\t")
+s += str(np.mean(trip_mtr['tmp']))
+s += str("\nDesvio padrão do tempo de viagem:\t")
+s += str(np.std(trip_mtr['tmp']))
+s += str("\nCurtose do tempo de viagem:\t")
+s += str(scipy.stats.kurtosis(trip_mtr['tmp']))
+s += str("\nSkewness do tempo de viagem:\t")
+s += str(scipy.stats.skew(trip_mtr['tmp']))
+
+with open("dat.txt", 'w') as datf:
+	datf.write(s)
+
+del s
 del trip_mtr
 
 #Parte 3 - Distribuição de ônibus ativos
@@ -78,21 +123,20 @@ active_analyze(data_mtr, inds_sab, "Sábados")
 active_analyze(data_mtr, inds_dom, "Domingos")
 #barras de ônibus ativos nos finais de semana
 active_analyze(data_mtr, inds_fds, "Finais de semana")
-"""
 
 
-"""Parte 4 - Comparação ida x volta"""
+
+#Parte 4 - Comparação ida x volta#
 print("parte 4")
 #init
 data_mtr = filter_data(data_mtr, inds_util)
-"""
 trip_mtr = calc_triptime(data_mtr)
-declaracoes iniciais
+#declaracoes iniciais
 t = data_mtr['t']
 d = t / (60 * 60 * 24) % 7
 
-#ti = trip_mtr['tis']
-#trip_lin = trip_mtr['lin']
+ti = trip_mtr['tis']
+trip_lin = trip_mtr['lin']
 cl = data_mtr['cl']
 h = (t % 24)
 #indices
@@ -101,7 +145,7 @@ inds_util = ((d < 2) | (d > 4))
 inds_sab = ((d >= 2) & (d < 3))
 inds_fds = (d >= 2) & (d < 4)
 inds_ida = (cl < 15000)
-
+inds_volta = (cl > 15000)
 #ida
 
 inds_trip_ida = (trip_lin < 15000)
@@ -111,7 +155,6 @@ vel_analyze(data_mtr, inds_ida, suptitle)
 active_analyze(data_mtr, inds_ida, suptitle)
 
 #volta
-
 inds_trip_volta = (trip_lin > 15000)
 suptitle = "Volta - dias úteis"
 trip_analyze(trip_mtr, inds_trip_volta, suptitle)
@@ -206,7 +249,7 @@ dif_analyze(data_mtr,
 dif_analyze(data_mtr,
 	manha_inds, tarde_inds,
 	matrix_size, dif_size, "Dias úteis - diferença manhã x tarde")
-"""
+
 #Parte 6 - Análise de zonas
 print("parte 6")
 #75
@@ -272,3 +315,4 @@ x_e = -46.80
 matrix_cfg = {'x_i': x_i, 'x_e': x_e, 'y_i': y_i, 'y_e': y_e, 'c': matrix_size}
 zone_analyze(data_mtr, matrix_cfg, "Extremo sul")
 """Parte 7 - misc"""
+

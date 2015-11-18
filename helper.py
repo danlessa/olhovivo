@@ -89,6 +89,8 @@ def zone_analyze(data_mtr, matrix_config, suptitle):
 	plt.suptitle(suptitle)
 	savefig()
 
+
+
 	#distribuição normalizada e velocidades medianas
 	v_matrix = calc_vel_matrix(zone_mtr, matrix_config)
 	map_vel(v_matrix['v_mtr'])

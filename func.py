@@ -25,6 +25,71 @@ default_matrix_config = {'x_i': -46.30, 'x_e': -46.85,
 	'y_i': -23.37, 'y_e': -23.92, 'c': 125}
 
 
+def check(t1, t2):
+	"""
+	bla
+	"""
+	if (t2 - t1 < 180):
+		return True
+	else:
+		return False
+
+
+def correct(data_mtr):
+	"""
+	blabla
+	"""
+	co = data_mtr["co"]
+	x = data_mtr["x"]
+	y = data_mtr["y"]
+	cl = data_mtr["cl"]
+	t = data_mtr["t"]
+	v = data_mtr["v"]
+	length = len(t)
+	bus_qtd = np.max(np.unique(co)) + 1
+	past = np.zeros(bus_qtd, dtype=np.int32)
+	present = np.zeros(bus_qtd, dtype=np.int32)
+	bus_set = np.zeros(bus_qtd, dtype=np.int32)
+
+	clf = []
+	cof = []
+	pxf = []
+	pyf = []
+	tf = []
+	vf = []
+
+	for i in range(0, length):
+		co_i = co[i]
+		t_i = t[i]
+		if(bus_set[co_i] == 0):
+			past[co_i] = i
+			bus_set[co_i] = 1
+		else:
+			if(bus_set[co_i] == 1):
+				t_p = past[co_i]
+				if check(t_i, t_p):
+					present[co_i] = i
+					bus_set[co_i] = 2
+				else:
+					bus_set[co_i] = 0
+			else:
+				if(bus_set[co_i] == 2):
+					t_p = present[co_i]
+					if check(t_i, t_p):
+						clf.append(cl[i])
+						cof.append(co[i])
+						pxf.append(x[i])
+						pyf.append(y[i])
+						tf.append(t[i])
+						vf.append(v[i])
+					else:
+						bus_set[co_i] = 1
+						past[co_i] = i
+		if i % 100000 == 0:
+			print((str(length-i)))
+	return {'x': pxf, 'y': pyf, 't': tf, 'v': vf, 'cl': clf, 'co': cof}
+
+
 #################### Data processing functions ####################
 def calc_vel_hour(data_mtr, intervalhr=2):
 	"""
@@ -421,7 +486,7 @@ def get_direction(x1, y1, x2, y2):
 	return np.arctan2(dy, dx)
 
 
-def savefig(filenamepath=0, dpip=300, inch=[12, 9]):
+def savefig(filenamepath=0, dpip=300, inch=[6, 5]):
 	"""
 	Save latest figure
 	Keyword arguments:

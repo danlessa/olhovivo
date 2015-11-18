@@ -130,7 +130,7 @@ def load_dat(path, utc, all=False):
 
 	inds = (vf == vf)
 	if all is False:
-		inds = (((vf < 70) & (vf > 3)))
+		inds = (((vf < 70) & (vf > 1)))
 	clf = clf[inds]
 	cof = cof[inds]
 	xf = xf[inds]
