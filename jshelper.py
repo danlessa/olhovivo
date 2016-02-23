@@ -11,11 +11,11 @@ import csv
 
 
 def write_JSON_codes(codeFilename="cod_linhas.csv", filenameOutput="codes.json"):
-''' Translates linecode csv file to JSON format
+    ''' Translates linecode csv file to JSON format
     Keyword arguments:
-        codeFilename -- path to csv file
-        filenameOutput -- path to output file
-'''
+    codeFilename -- path to csv file
+    filenameOutput -- path to output file
+    '''
 
     i = 0
     line = ""
@@ -27,7 +27,7 @@ def write_JSON_codes(codeFilename="cod_linhas.csv", filenameOutput="codes.json")
         for row in csvreader:
             if(i == 2):
                 i = 0
-                output += "{\"linha\":%s,\"codigoIda\":%s,\"codigoVolta\":%s}," % (line, line_ida, line_volta)
+                output += "{\"linha\":\"%s\",\"codigoIda\":%s,\"codigoVolta\":%s}," % (line, line_ida, line_volta)
             else:
                 i += 1
                 line = row[0]
