@@ -10,7 +10,7 @@ from func import *
 from graphics import *
 from helper import *
 
-path = "/home/danilo/olhovivo/"
+path = "/home/danilo_lessa/olhovivo/"
 #carregamento dos dados
 data_mtrx = load_dat(path, UTC)
 
