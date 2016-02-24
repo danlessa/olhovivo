@@ -96,7 +96,7 @@ def zone_analyze(data_mtr, matrix_config, suptitle):
 	map_vel(v_matrix['v_mtr'])
 	plt.suptitle(suptitle)
 	savefig()
-	z_mtr = v_matrix['qtd_mtr'] / np.sum(v_matrix['qtd']
+	z_mtr = v_matrix['qtd_mtr'] / np.sum(v_matrix['qtd'])
 	map_mtr(z_mtr, 0, np.max(z_mtr))
 	plt.suptitle(suptitle)
 	savefig()
