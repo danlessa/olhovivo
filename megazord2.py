@@ -2,6 +2,9 @@
 ### megazord2: para gerar linhas individuais
 
 #dependências iniciais e constantes
+import matplotlib as mpl
+mpl.use('Agg')
+
 import numpy as np
 import matplotlib as plt
 import scipy.stats
