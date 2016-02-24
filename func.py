@@ -369,38 +369,39 @@ def calc_triptime(data_mtr):
 	cld = data_mtr['cl']
 	cod = data_mtr['co']
 	td = data_mtr['t']
-
-	co = np.unique(cod)
-	lengthd = len(td)
-
-	max_co = np.max(co) + 1
-	m_ti = np.zeros(max_co, dtype=np.float64)
-	m_tl = np.zeros(max_co, dtype=np.float64)
-	m_cl = np.zeros(max_co, dtype=np.int32)
-	m_n = np.zeros(max_co, dtype=np.int32)
 	times = []
 	lines = []
 	tis = []
+	co = np.unique(cod)
+	lengthd = len(td)
+	
+	if(lengthd > 1):
+		max_co = np.max(co) + 1
+		m_ti = np.zeros(max_co, dtype=np.float64)
+		m_tl = np.zeros(max_co, dtype=np.float64)
+		m_cl = np.zeros(max_co, dtype=np.int32)
+		m_n = np.zeros(max_co, dtype=np.int32)
 
-	for i in range(0, lengthd):
-		cl_i = cld[i]
-		co_i = cod[i]
-		t_i = td[i]
-		clt = m_cl[co_i]
-		n = m_n[co_i]
-		if(cl_i != clt):
-			if(n > 1):
-				tt = (m_tl[co_i] - m_ti[co_i]) / 60
-				if (tt > 10 and tt < 300):
-					times.append(tt)
-					lines.append(clt)
-					tis.append(m_ti[co_i])
-			m_n[co_i] = n + 1
-			m_ti[co_i] = t_i
-			m_cl[co_i] = cl_i
-		m_tl[co_i] = t_i
-		if(i % 1000000 == 0):
-			print((lengthd - i))
+
+		for i in range(0, lengthd):
+			cl_i = cld[i]
+			co_i = cod[i]
+			t_i = td[i]
+			clt = m_cl[co_i]
+			n = m_n[co_i]
+			if(cl_i != clt):
+				if(n > 1):
+					tt = (m_tl[co_i] - m_ti[co_i]) / 60
+					if (tt > 10 and tt < 300):
+						times.append(tt)
+						lines.append(clt)
+						tis.append(m_ti[co_i])
+				m_n[co_i] = n + 1
+				m_ti[co_i] = t_i
+				m_cl[co_i] = cl_i
+			m_tl[co_i] = t_i
+			if(i % 1000000 == 0):
+				print((lengthd - i))
 	return {'tmp': np.array(times), 'lin': np.array(lines), 'tis': np.array(tis)}
 
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy
 from func import *
 from graphics import *
 from main import *
@@ -41,7 +42,8 @@ def interval_analyze(data_mtr, inds, suptitle, matrix_size):
 	plt.suptitle(suptitle)
 	savefig()
 	qtd = np.sum(q_mtr)
-	map_mtr(q_mtr / qtd, 0, 0.003)
+	qq_mtr = q_mtr / qtd
+	map_mtr(qq_mtr, 0, np.max(qq_mtr))
 	plt.suptitle(suptitle)
 	plt.title("Distribuição normalizada")
 	savefig()
@@ -517,10 +519,6 @@ def megazord2(data_mtr):
 	bar_trip_hr(trip_mtr)
 	plt.suptitle("")
 	savefig()
-	#barras de tempos de viagem em dias utéis
-	ind_util = dt
-	trip_analyze(trip_mtr, ind_util, "")
-	
 	
 	##parte 2.5 - analises
 	
