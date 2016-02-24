@@ -482,8 +482,9 @@ def megazord(data_mtr):
 
 #######################################################################################
 
-def megazord2(data_mtr):
+def megazord2(data_mtr, trip_mtr, zline):
 	#declaracoes iniciais
+	
 	t = data_mtr['t']
 	d = t / (60 * 60 * 24) % 7
 	cl = data_mtr['cl']
@@ -512,9 +513,6 @@ def megazord2(data_mtr):
 	
 	#Parte 2 - Distribuição de tempos de viagem
 	print("parte 2")
-	trip_mtr = calc_triptime(data_mtr)
-	ti = trip_mtr['tis']
-	dt = ti / (60 * 60 * 24) % 7
 	#barras de tempos de viagem geral
 	bar_trip_hr(trip_mtr)
 	plt.suptitle("")

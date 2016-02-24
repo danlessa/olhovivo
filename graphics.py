@@ -189,7 +189,7 @@ def bar_vel_hr(velhr_mtr):
 	"""
 	bar_hr(velhr_mtr['tmp'] / hr, velhr_mtr['med'])
 	plt.title("Velocidade mediana por hora do dia")
-	plt.ylim((0, 25))
+	plt.ylim((0, 60))
 	plt.xlabel("Hora do dia")
 	plt.ylabel("Velocidade mediana (km/h)")
 
@@ -210,8 +210,8 @@ def bar_active_hr(act_mtr):
 	Write something
 	"""
 	bar_hr(act_mtr["tmid"] / hr, act_mtr["active_bus"])
-	plt.yticks(np.arange(0, 15000, 1000))
-	plt.ylim((0, 15000))
+	plt.yticks(np.arange(0, 90, 3))
+	plt.ylim((0, 90))
 	plt.xlabel("Hora do dia")
 	plt.ylabel("Mediana de ônibus ativos")
 	plt.title("Mediana da quantidade de ônibus ativos por hora do dia")
@@ -227,7 +227,7 @@ def bar_hr(tdat, dat):
 	width = 0.3
 	plt.figure()
 	plt.xticks(np.arange(0, 24, 2))
-	plt.yticks(np.arange(0, 65, 3))
+	plt.yticks(np.arange(0, 150, 3))
 	plt.ylim((0, 65))
 	plt.xlim((0, 24))
 	plt.grid(True)

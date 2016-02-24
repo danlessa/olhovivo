@@ -434,6 +434,7 @@ def calc_active_bus(data_mtr, intervalhr=2):
 				if(np.sum(inds) == 0):
 					mean_array[j] = np.nan
 				else:
+					print
 					mean_array[j] = len(np.unique(cod[inds]))
 			mean_array = mean_array[np.isfinite(mean_array)]
 			buscount[i] = np.median(mean_array[mean_array != 0])
