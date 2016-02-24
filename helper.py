@@ -513,13 +513,6 @@ def megazord2(data_mtr):
 	trip_mtr = calc_triptime(data_mtr)
 	ti = trip_mtr['tis']
 	dt = ti / (60 * 60 * 24) % 7
-	#histograma de tempos de viagem
-	plt.hist(trip_mtr["tmp"], bins=100, range=(0, 300))
-	plt.xlabel("Tempo de viagem (min)")
-	plt.ylabel("Quantidade de viagens")
-	plt.suptitle("")
-	plt.title("Distribuição dos tempos de viagens")
-	savefig()
 	#barras de tempos de viagem geral
 	bar_trip_hr(trip_mtr)
 	plt.suptitle("")
@@ -571,7 +564,6 @@ def megazord2(data_mtr):
 	print("parte 3")
 	#barras de ônibus ativos geral
 	active_analyze(data_mtr, inds_all, "")
-
 
 	
 	#Parte 5 - Comparação espacial de horários de picos
