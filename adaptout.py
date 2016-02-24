@@ -27,10 +27,10 @@ def rename(src, day, lin, tip):
 		t = "mvel"
 	os.rename(src, "%s-%s-%s%s.png" % (d, t, lin, t))
 
-#path = "/home/danilo/olhovivo/"
-#data_mtr = load_dat(path, UTC)
-#cl = data_mtr['cl']
-#lines = np.sort(np.unique(cl))
+path = "/home/danilo/olhovivo/"
+data_mtr = load_dat(path, UTC)
+cl = data_mtr['cl']
+lines = np.sort(np.unique(cl))
 mypath = "/soc/home/danlessa/olhovivo"
 pngs = []
 dats = []
