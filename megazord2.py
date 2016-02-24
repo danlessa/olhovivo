@@ -18,18 +18,29 @@ cl = data_mtrx["cl"]
 z_linhas = np.unique(cl)
 
 for z_linha in z_linhas:
+	print(str(z_linha))
 	data_mtr = filter_data(data_mtrx, cl == z_linha)
-	if(len(data_mtr['t']) == 0):
+	if(len(data_mtr['t']) < 20):
 		continue 
 	t = data_mtr["t"]
 	d = t / (60 * 60 * 24) % 7
 	inds_util = ((d < 2) | (d > 4))
 	inds_sab = ((d >= 2) & (d < 3))
 	inds_dom = (d >= 3) & (d < 4)
-
-	megazord2(filter_data(data_mtr, t == inds_util))
-	megazord2(filter_data(data_mtr, t == inds_sab))
-	megazord2(filter_data(data_mtr, t == inds_dom))
+	
+	temp_mtr = filter_data(data_mtr, inds_util)
+	if(len(temp_mtr['cl']) < 20):
+		continue
+	megazord2(temp_mtr)
+	temp_mtr = filter_data(data_mtr, inds_sab)
+	if(len(temp_mtr['cl']) < 20):
+		continue
+	megazord2(temp_mtr)
+	temp_mtr = filter_data(data_mtr, inds_dom)
+	if(len(temp_mtr['cl']) < 20):
+		continue
+	megazord2(temp_mtr)
+	print(str(z_linha) + " done")
 
 
 

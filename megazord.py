@@ -8,7 +8,7 @@ from func import *
 from graphics import *
 from helper import *
 
-path = "/home/danilo/olhovivo/data/"
+path = "/home/danilo/olhovivo/"
 #carregamento dos dados
 data_mtr = load_dat(path, UTC)
 megazord(data_mtr)
