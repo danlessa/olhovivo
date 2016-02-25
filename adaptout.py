@@ -1,7 +1,8 @@
+
 import os
 import os.path
 import numpy as np
-
+from main import *
 
 def rename(src, day, lin, tip):
 	d = ""
@@ -27,11 +28,11 @@ def rename(src, day, lin, tip):
 		t = "mvel"
 	os.rename(src, "%s-%s-%s%s.png" % (d, t, lin, t))
 
-path = "/home/danilo/olhovivo/"
+path = "/home/danilo_lessa/olhovivo/"
 data_mtr = load_dat(path, UTC)
 cl = data_mtr['cl']
 lines = np.sort(np.unique(cl))
-mypath = "/soc/home/danlessa/olhovivo"
+mypath = "/home/danilo_lessa/olhovivo"
 pngs = []
 dats = []
 
@@ -42,18 +43,19 @@ for fil in raw_files:
 		if (fil[-3:] == 'png'):
 			pngs.append(fil)
 		else:
-			dats.append(fil)
 
-for (i < xrange(0, len(lines))):
+			dats.append(fil)
+i = 0
+for i in range(0, len(lines)):
 	j = 0
-	for (j < xrange(0, 2)):
+	for j in range(0, 2):
 		m = 0
-		for (m < xrange(0, 4)):
-			rename(pngs[15*i+j+m], j, lines[i], m)		
+		for m in range(0, 4):
+			rename(pngs[15*i+5*j+m], j, lines[i], m)		
 	
 
-
-for dat in dats:
+i = 0
+for i in range(0, len(lines)):
 	j = 0
-	for (j < xrange(0, 2)):
+	for j in range(0, 2):
 		rename(dats[3*i+j], j, lines[i], -1)		
