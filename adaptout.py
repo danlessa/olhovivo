@@ -26,7 +26,11 @@ def rename(src, day, lin, tip):
 		t = "mpos"
 	elif(tip == 4):
 		t = "mvel"
-	os.rename(src, "%s-%s-%s%s.png" % (d, t, lin, t))
+		
+	if(tip == -1):
+		os.rename(src, "%s-%s.txt" % (d, lin))
+	else:
+		os.rename(src, "%s-%s-%s.png" % (d, t, lin))
 
 path = "/home/danilo_lessa/olhovivo/"
 data_mtr = load_dat(path, UTC)
