@@ -85,8 +85,7 @@ z_linhas = np.unique(cl)
 trip_mtr = calc_triptime(data_mtrx)
 
 i=0
-line
-
+codeFilename = "cod_linhas.csv"
 linhas = []
 linhas_ida = []
 linhas_volta = []
