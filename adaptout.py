@@ -54,8 +54,8 @@ i = 0
 j = 0
 k = 0
 for lin in lines:
-	for j in range(0, 2):
+	for j in range(0, 3):
 		rename(dats[3*i + j], j, lin, -1)
-		for k in range(0, 4):
+		for k in range(0, 5):
 			rename(pngs[15*i + 5*j + k], j, lin, k)
 	i += 1
