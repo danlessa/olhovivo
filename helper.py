@@ -521,34 +521,58 @@ def megazord2(data_mtr, trip_mtr, zline):
 	##parte 2.5 - analises
 	
 	s = ""
+	s += "<div>"
 	s += "Quantidade de dados analisados:\t"
 	s += str(len(data_mtr['t']))
+	
+	s += "</div><div>"
 	s += str("\nQuantidade de ônibus:\t")
 	s += str(len(np.unique(data_mtr['co'])))
+	
+	s += "</div><div>"
 	s += str("\nQuantidade de linhas:\t")
 	s += str(len(np.unique(data_mtr['cl'])))
+	s += "</div><div>"
 	
 	s += str("\nVelocidade mediana geral:\t")
 	s += str(np.median(data_mtr['v']))
+	s += "</div><div>"
+	
 	s += str("\nVelocidade média geral:\t")
 	s += str(np.mean(data_mtr['v']))
+	s += "</div><div>"
+	
 	s += str("\nDesvio padrão da velocidade:\t")
 	s += str(np.std(data_mtr['v']))
+	s += "</div><div>"
+	
 	s += str("\nCurtose da velocidade:\t")
 	s += str(scipy.stats.kurtosis(data_mtr['v']))
+	s += "</div><div>"
+	
 	s += str("\nSkewness da velocidade:\t")
 	s += str(scipy.stats.skew(data_mtr['v']))
+	s += "</div><div>"
 	
 	s += str("\nTempo mediano de viagem:\t")
 	s += str(np.median(trip_mtr['tmp']))
+	s += "</div><div>"
+	
 	s += str("\nTempo médio de viagem:\t")
 	s += str(np.mean(trip_mtr['tmp']))
+	s += "</div><div>"
+	
 	s += str("\nDesvio padrão do tempo de viagem:\t")
 	s += str(np.std(trip_mtr['tmp']))
+	s += "</div><div>"
+	
 	s += str("\nCurtose do tempo de viagem:\t")
 	s += str(scipy.stats.kurtosis(trip_mtr['tmp']))
+	s += "</div><div>"
+	
 	s += str("\nSkewness do tempo de viagem:\t")
 	s += str(scipy.stats.skew(trip_mtr['tmp']))
+	s += "</div>"
 	
 	with open(str(time.time()), 'w') as datf:
 		datf.write(s)
@@ -564,7 +588,7 @@ def megazord2(data_mtr, trip_mtr, zline):
 	
 	#Parte 5 - Comparação espacial de horários de picos
 	print("parte 5")
-	matrix_size = 75
+	matrix_size = 100
 	dif_size = 3
 	
 	#util

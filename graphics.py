@@ -22,6 +22,8 @@ def map_mtr(mtr, l_min=0, l_max=60, colmap='nipy_spectral'):
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
 	ax.set_axis_bgcolor('black')
+	im = plt.imread('map.png')
+	plt.imshow(im)
 	cax = ax.matshow(mtr, cmap=colmap, vmin=l_min, vmax=l_max)
 	fig.colorbar(cax)
 
@@ -179,7 +181,7 @@ def bar_trip_hr(trip_mtr):
 	bar_hr(temps / hr, meds)
 	plt.xlabel("Hora do dia")
 	plt.ylabel("Tempo (min)")
-	plt.ylim((0, 60))
+	plt.ylim((0, 150))
 	plt.title("Tempo de viagem por hora do dia")
 
 
@@ -210,8 +212,8 @@ def bar_active_hr(act_mtr):
 	Write something
 	"""
 	bar_hr(act_mtr["tmid"] / hr, act_mtr["active_bus"])
-	plt.yticks(np.arange(0, 90, 3))
-	plt.ylim((0, 90))
+	plt.yticks(np.arange(0, 80, 2))
+	plt.ylim((0, 80))
 	plt.xlabel("Hora do dia")
 	plt.ylabel("Mediana de ônibus ativos")
 	plt.title("Mediana da quantidade de ônibus ativos por hora do dia")
@@ -227,7 +229,7 @@ def bar_hr(tdat, dat):
 	width = 0.3
 	plt.figure()
 	plt.xticks(np.arange(0, 24, 2))
-	plt.yticks(np.arange(0, 150, 3))
+	plt.yticks(np.arange(0, 150, 5))
 	plt.ylim((0, 65))
 	plt.xlim((0, 24))
 	plt.grid(True)
