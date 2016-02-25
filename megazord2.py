@@ -46,7 +46,10 @@ def linhagen(z_linha):
 	
 def linhagentd(z_linha1, z_linha2):
 	print(str(z_linha))
-	data_mtr = filter_data(data_mtrx, (cl == z_linha1 or cl ==z_linha2))
+	inds1 = (cl == z_linha1)
+	inds2 = (cl == z_linha2)
+	inds = inds1 | inds2
+	data_mtr = filter_data(data_mtrx, inds)
 	t = data_mtr["t"]
 	d = t / (60 * 60 * 24) % 7
 	inds_util = ((d < 2) | (d > 4))
@@ -56,7 +59,10 @@ def linhagentd(z_linha1, z_linha2):
 	c_trip = trip_mtr['lin']
 	t_trip = trip_mtr['tmp']
 	d = t_trip / (60 * 60 * 24) % 7
-	inds_t = (c_trip == z_linha1 or c_trip == z_linha2)
+	indt1 = c_trip == z_linha1
+	indt2 = c_trip == z_linha2
+	indt = indt1 | indt2
+	inds_t = indt
 	inds_t_util = ((d < 2) | (d > 4)) & inds_t
 	inds_t_sab = ((d >= 2) & (d < 3)) & inds_t
 	inds_t_dom = (d >= 3) & (d < 4) & inds_t

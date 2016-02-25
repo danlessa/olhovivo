@@ -20,11 +20,13 @@ def map_mtr(mtr, l_min=0, l_max=60, colmap='nipy_spectral'):
 		mtr -- matrix to map
 	"""
 	fig = plt.figure()
+
 	ax = fig.add_subplot(111)
-	ax.set_axis_bgcolor('black')
+	ax.patch.set_visible(False)
 	im = plt.imread('map.png')
-	plt.imshow(im)
+#	plt.imshow(im, interpolation='nearest', aspect='auto')
 	cax = ax.matshow(mtr, cmap=colmap, vmin=l_min, vmax=l_max)
+	plt.imshow(im, extent=cax.get_extent(), alpha=0.2)
 	fig.colorbar(cax)
 
 
@@ -212,8 +214,8 @@ def bar_active_hr(act_mtr):
 	Write something
 	"""
 	bar_hr(act_mtr["tmid"] / hr, act_mtr["active_bus"])
-	plt.yticks(np.arange(0, 80, 2))
-	plt.ylim((0, 80))
+	plt.yticks(np.arange(0, 60, 2))
+	plt.ylim((0, 60))
 	plt.xlabel("Hora do dia")
 	plt.ylabel("Mediana de ônibus ativos")
 	plt.title("Mediana da quantidade de ônibus ativos por hora do dia")

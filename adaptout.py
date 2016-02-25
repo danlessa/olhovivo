@@ -41,7 +41,9 @@ linhas = []
 linhas_ida = []
 linhas_volta = []
 codeFilename = "cod_linhas.csv"
-
+mypath = "/home/danilo_lessa/olhovivo"
+pngs =[]
+dats =[]
 if(1 == 1):
     i = 0
     with open(codeFilename, 'r') as csvfile:	
