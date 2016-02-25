@@ -45,17 +45,13 @@ for fil in raw_files:
 		else:
 
 			dats.append(fil)
-i = 0
-for i in range(0, len(lines)):
-	j = 0
-	for j in range(0, 2):
-		m = 0
-		for m in range(0, 4):
-			rename(pngs[15*i+5*j+m], j, lines[i], m)		
-	
 
 i = 0
-for i in range(0, len(lines)):
-	j = 0
+j = 0
+k = 0
+for lin in lines:
 	for j in range(0, 2):
-		rename(dats[3*i+j], j, lines[i], -1)		
+			rename(dats[3*i + j], j, lin, -1)
+		for k in range(0, 4):
+			rename(pngs[15*i + 5*j + k], j, lin, k)
+	i += 1
