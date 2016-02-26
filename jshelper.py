@@ -21,22 +21,21 @@ def write_JSON_codes(codeFilename="cod_linhas.csv", filenameOutput="codes.json")
     line = ""
     line_ida = ""
     line_volta = ""
-    output = "{\"linhas\":["
+    output = "["
     with open(codeFilename, 'r') as csvfile:	
         csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in csvreader:
             if(i == 2):
                 i = 0
                 output += "{\"linha\":\"%s\",\"codigoIda\":%s,\"codigoVolta\":%s}," % (line, line_ida, line_volta)
-            else:
-                i += 1
-                line = row[0]
-                if(row[2] == '1'):
-                    line_ida = row[1]
-                if(row[2] == '2'):
-                    line_volta = row[1]
+            i += 1
+            line = row[0]
+            if(row[2] == '1'):
+                line_ida = row[1]
+            if(row[2] == '2'):
+                line_volta = row[1]
     output = output[:-1]
-    output += "]}"
+    output += "]"
     with open(filenameOutput, 'w') as outputfile:
         outputfile.write(output)
 
