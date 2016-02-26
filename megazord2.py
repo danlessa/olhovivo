@@ -103,13 +103,12 @@ if(1 == 1):
         for row in csvreader:
             if(i == 2):
                 i = 0
-            else:
-                i += 1
-                linhas.append(row[0])
-                if(row[2] == '1'):
-                    linhas_ida.append(int(row[1]))
-                if(row[2] == '2'):
-                    linhas_volta.append(int(row[1]))
+            i += 1
+            linhas.append(row[0])
+            if(row[2] == '1'):
+            	linhas_ida.append(int(row[1]))
+            if(row[2] == '2'):
+            	linhas_volta.append(int(row[1]))
 
 i = 0
 for z_linha in linhas:
