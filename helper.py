@@ -7,7 +7,7 @@ from graphics import *
 from main import *
 
 
-def vel_analyze(data_mtr, inds, suptitle):
+def vel_analyze(data_mtr, inds, suptitle, filestr=0):
 	"""
 	Standard speed analysis routine
 	"""
@@ -15,10 +15,10 @@ def vel_analyze(data_mtr, inds, suptitle):
 	vel_hour = calc_vel_hour(mtr)
 	bar_vel_hr(vel_hour)
 	plt.suptitle(suptitle)
-	savefig()
+	savefig(filestr)
 
 
-def active_analyze(data_mtr, ind, suptitle):
+def active_analyze(data_mtr, ind, suptitle, filestr=0):
 	"""
 	Standard active bus analysis routine
 	"""
@@ -26,10 +26,10 @@ def active_analyze(data_mtr, ind, suptitle):
 	active_mtr = calc_active_bus(mtr)
 	bar_active_hr(active_mtr)
 	plt.suptitle(suptitle)
-	savefig()
+	savefig(filestr)
 
 
-def interval_analyze(data_mtr, inds, suptitle, matrix_size):
+def interval_analyze(data_mtr, inds, suptitle, matrix_size, filestr=0):
 	"""
 	Write something
 	"""
@@ -40,13 +40,15 @@ def interval_analyze(data_mtr, inds, suptitle, matrix_size):
 
 	map_vel(v_mtr)
 	plt.suptitle(suptitle)
-	savefig()
+	savefig(filestr + "-mvel.png")
+
+
 	qtd = np.sum(q_mtr)
 	qq_mtr = q_mtr / qtd
 	map_mtr(qq_mtr, 0, np.max(qq_mtr))
 	plt.suptitle(suptitle)
 	plt.title("Distribuição normalizada")
-	savefig()
+	savefig(filestr + "-mpos.png")
 
 
 def dif_analyze(data_mtr, ind1, ind2, matrix_size, dif_size, suptitle):
@@ -141,14 +143,14 @@ def zone_analyze(data_mtr, matrix_config, suptitle):
 	savefig()
 
 
-def trip_analyze(data_mtr, inds, suptitle):
+def trip_analyze(data_mtr, inds, suptitle, filestr=0):
 	"""
 	aaaa
 	"""
 	mtr = filter_data(data_mtr, inds)
 	bar_trip_hr(mtr)
 	plt.suptitle(suptitle)
-	savefig()
+	savefig(filestr)
 
 
 def dif_bar_analyze(data_mtr, ind1, ind2, suptitle):
@@ -482,7 +484,7 @@ def megazord(data_mtr):
 
 #######################################################################################
 
-def megazord2(data_mtr, trip_mtr, zline):
+def megazord2(data_mtr, trip_mtr, zline, filetip=""):
 	#declaracoes iniciais
 	
 	t = data_mtr['t']
@@ -508,13 +510,15 @@ def megazord2(data_mtr, trip_mtr, zline):
 	
 	print("parte 1")
 	#barras de velocidades geral
-	vel_analyze(data_mtr, inds_all, "")
+	filestr = filetip + "-velhr.png"
+	vel_analyze(data_mtr, inds_all, "", filestr)
 
 	
 	#Parte 2 - Distribuição de tempos de viagem
 	print("parte 2")
 	#barras de tempos de viagem geral
-	bar_trip_hr(trip_mtr)
+	filestr = filetip + "-tript.png"
+	bar_trip_hr(trip_mtr, filestr)
 	plt.suptitle("")
 	savefig()
 	
@@ -573,8 +577,8 @@ def megazord2(data_mtr, trip_mtr, zline):
 	s += str("\nSkewness do tempo de viagem:\t")
 	s += str(scipy.stats.skew(trip_mtr['tmp']))
 	s += "</div>"
-	
-	with open(str(time.time()), 'w') as datf:
+	filestr = filetip + ".txt"
+	with open(filestr, 'w') as datf:
 		datf.write(s)
 	
 	del s
@@ -583,7 +587,8 @@ def megazord2(data_mtr, trip_mtr, zline):
 	#Parte 3 - Distribuição de ônibus ativos
 	print("parte 3")
 	#barras de ônibus ativos geral
-	active_analyze(data_mtr, inds_all, "")
+	filestr = filetip + "-active.png"
+	active_analyze(data_mtr, inds_all, "", filestr)
 
 	
 	#Parte 5 - Comparação espacial de horários de picos
@@ -592,6 +597,7 @@ def megazord2(data_mtr, trip_mtr, zline):
 	dif_size = 3
 	
 	#util
+	filestr = filetip
 	interval_analyze(data_mtr, inds_all,
-		"", matrix_size)
+		"", matrix_size, filestr)
 	

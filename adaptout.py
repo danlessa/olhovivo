@@ -73,18 +73,21 @@ i = 0
 j = 0
 k = 0
 ii = 0
-for lin in linhas:
+
+volta_c = len(linhas_volta)
+for lin in linhas_ida:
 	for j in range(0, 3):
 		rename(dats[3*i + j], j, linhas_ida[ii], -1)
 		for k in range(0, 5):
 			rename(pngs[15*i + 5*j + k], j, linhas_ida[ii], k)
 	i += 1
 
-	for j in range(0, 3):
-		rename(dats[3*i + j], j, linhas_volta[ii], -1)
-		for k in range(0, 5):
-			rename(pngs[15*i + 5*j + k], j, linhas_volta[ii], k)
-	i += 1
+	if(volta_c > ii):
+		for j in range(0, 3):
+			rename(dats[3*i + j], j, linhas_volta[ii], -1)
+			for k in range(0, 5):
+				rename(pngs[15*i + 5*j + k], j, linhas_volta[ii], k)
+		i += 1
 	
 	for j in range(0, 3):
 		rename(dats[3*i + j], j, linhas_ida[ii], -1, True)

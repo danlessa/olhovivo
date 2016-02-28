@@ -26,7 +26,7 @@ def map_mtr(mtr, l_min=0, l_max=60, colmap='nipy_spectral'):
 	im = plt.imread('map.png')
 #	plt.imshow(im, interpolation='nearest', aspect='auto')
 	cax = ax.matshow(mtr, cmap=colmap, vmin=l_min, vmax=l_max)
-	plt.imshow(im, extent=cax.get_extent(), alpha=0.2)
+	plt.imshow(im, extent=cax.get_extent(), alpha=0.35)
 	fig.colorbar(cax)
 
 
