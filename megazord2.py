@@ -48,7 +48,7 @@ def linhagen(z_linha):
 	print(str(z_linha) + " done")
 	
 	
-def linhagentd(z_linha1, z_linha2, filestr):
+def linhagentd(z_linha1, z_linha2):
 	print(str(z_linha))
 	inds1 = (cl == z_linha1)
 	inds2 = (cl == z_linha2)
