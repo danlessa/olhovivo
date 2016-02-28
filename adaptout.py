@@ -48,7 +48,7 @@ if(1 == 1):
     i = 0
     with open(codeFilename, 'r') as csvfile:	
         csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        for row in csvreader:
+        for ro	w in csvreader:
             if(i == 2):
                 i = 0
             else:
@@ -72,21 +72,22 @@ for fil in raw_files:
 i = 0
 j = 0
 k = 0
+ii = 0
 for lin in linhas:
 	for j in range(0, 3):
-		rename(dats[3*i + j], j, linhas_ida[i], -1)
+		rename(dats[3*i + j], j, linhas_ida[ii], -1)
 		for k in range(0, 5):
-			rename(pngs[15*i + 5*j + k], j, linhas_ida[i], k)
+			rename(pngs[15*i + 5*j + k], j, linhas_ida[ii], k)
+	i += 1
+
+	for j in range(0, 3):
+		rename(dats[3*i + j], j, linhas_volta[ii], -1)
+		for k in range(0, 5):
+			rename(pngs[15*i + 5*j + k], j, linhas_volta[ii], k)
 	i += 1
 	
 	for j in range(0, 3):
-		rename(dats[3*i + j], j, linhas_volta[i], -1)
+		rename(dats[3*i + j], j, linhas_ida[ii], -1, True)
 		for k in range(0, 5):
-			rename(pngs[15*i + 5*j + k], j, linhas_volta[i], k)
-	i += 1
-	
-	for j in range(0, 3):
-		rename(dats[3*i + j], j, linhas_ida[i], -1, True)
-		for k in range(0, 5):
-			rename(pngs[15*i + 5*j + k], j, linhas_ida[i], k, True)
+			rename(pngs[15*i + 5*j + k], j, linhas_ida[ii], k, True)
 	i += 1
