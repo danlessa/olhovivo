@@ -48,7 +48,7 @@ if(1 == 1):
     i = 0
     with open(codeFilename, 'r') as csvfile:	
         csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        for ro	w in csvreader:
+        for row in csvreader:
             if(i == 2):
                 i = 0
             else:
