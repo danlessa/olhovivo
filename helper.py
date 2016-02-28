@@ -518,9 +518,9 @@ def megazord2(data_mtr, trip_mtr, zline, filetip=""):
 	print("parte 2")
 	#barras de tempos de viagem geral
 	filestr = filetip + "-tript.png"
-	bar_trip_hr(trip_mtr, filestr)
+	bar_trip_hr(trip_mtr)
 	plt.suptitle("")
-	savefig()
+	savefig(filestr)
 	
 	##parte 2.5 - analises
 	
