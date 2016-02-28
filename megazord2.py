@@ -32,19 +32,23 @@ def linhagen(z_linha):
 
 	trip_t_mtr = filter_data(trip_mtr, inds_t_util)
 	temp_mtr = filter_data(data_mtr, inds_util)
-	megazord2(temp_mtr, trip_t_mtr, z_linha)
+	filestr = "u-"+str(z_linha)
+	megazord2(temp_mtr, trip_t_mtr, z_linha, filestr)
+
 
 	trip_t_mtr = filter_data(trip_mtr, inds_t_sab)
 	temp_mtr = filter_data(data_mtr, inds_sab)
-	megazord2(temp_mtr, trip_t_mtr, z_linha)
+	filestr = "s-"+str(z_linha)
+	megazord2(temp_mtr, trip_t_mtr, z_linha, filestr)
 
 	trip_t_mtr = filter_data(trip_mtr, inds_t_dom)
 	temp_mtr = filter_data(data_mtr, inds_dom)
-	megazord2(temp_mtr, trip_t_mtr, z_linha)
+	filestr = "d-"+str(z_linha)
+	megazord2(temp_mtr, trip_t_mtr, z_linha, filestr)
 	print(str(z_linha) + " done")
 	
 	
-def linhagentd(z_linha1, z_linha2):
+def linhagentd(z_linha1, z_linha2, filestr):
 	print(str(z_linha))
 	inds1 = (cl == z_linha1)
 	inds2 = (cl == z_linha2)
@@ -69,15 +73,18 @@ def linhagentd(z_linha1, z_linha2):
 
 	trip_t_mtr = filter_data(trip_mtr, inds_t_util)
 	temp_mtr = filter_data(data_mtr, inds_util)
-	megazord2(temp_mtr, trip_t_mtr, z_linha)
+	filestr = "tds-u-"+str(z_linha)
+	megazord2(temp_mtr, trip_t_mtr, z_linha, filestr)
 
 	trip_t_mtr = filter_data(trip_mtr, inds_t_sab)
 	temp_mtr = filter_data(data_mtr, inds_sab)
-	megazord2(temp_mtr, trip_t_mtr, z_linha)
+	filestr = "tds-u-"+str(z_linha)
+	megazord2(temp_mtr, trip_t_mtr, z_linha, filestr)
 
 	trip_t_mtr = filter_data(trip_mtr, inds_t_dom)
 	temp_mtr = filter_data(data_mtr, inds_dom)
-	megazord2(temp_mtr, trip_t_mtr, z_linha)
+	filestr = "tds-u-"+str(z_linha)
+	megazord2(temp_mtr, trip_t_mtr, z_linha, filestr)
 	print(str(z_linha) + " done")
 
 
