@@ -91,3 +91,4 @@ for lin in linhas:
 		for k in range(0, 5):
 			rename(pngs[15*i + 5*j + k], j, linhas_ida[ii], k, True)
 	i += 1
+	ii += 1
