@@ -124,10 +124,8 @@ for lin in linhas:
         print(linha['volta'])
         linhagentd(linha['ida'], linha['volta'])
     elif hasIda:
-        print("sux")
         linhagentd(linha['ida'], linha['ida'])
     elif hasVolta:
-        print("suxx")
         linhagentd(linha['volta'], linha['volta'])
 
     
